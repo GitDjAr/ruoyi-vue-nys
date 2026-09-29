@@ -41,6 +41,8 @@ import useLockStore from '@/store/modules/lock'
 import { unlockScreen } from '@/api/login'
 import defAva from '@/assets/imgs/avatar.jpeg'
 import { $t } from '@/locales'
+import { isLocalMode } from '@/config/runtime'
+import { localUnlock } from '@/services/local-runtime'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -83,7 +85,8 @@ const handleUnlock = async () => {
   loading.value = true
   errorMsg.value = ''
   try {
-    await unlockScreen(password.value)
+    const unlockRequest = isLocalMode ? localUnlock : unlockScreen
+    await unlockRequest(password.value)
     const lockPath = lockStore.lockPath
     lockStore.unlockScreen()
     router.replace(lockPath)

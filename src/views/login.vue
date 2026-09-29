@@ -8,6 +8,7 @@ import { localStg } from '@/utils/storage';
 import { useAuthStore } from '@/store/modules/auth';
 import { useThemeStore } from '@/store/modules/theme';
 import { $t } from '@/locales';
+import { isLocalMode } from '@/config/runtime'
 
 defineOptions({ name: 'Login' });
 
@@ -47,8 +48,8 @@ const loginRules = computed<FormRules>(() => ({
 
 const codeUrl = ref('');
 const loading = ref(false);
-/** 验证码开关 */
-const captchaEnabled = ref(true);
+/** 验证码开关 */	
+const captchaEnabled = ref(!isLocalMode)
 /** 注册开关 */
 const register = ref(false);
 
@@ -120,7 +121,9 @@ function clearLegacyRememberCookies() {
 onMounted(() => {
   clearLegacyRememberCookies();
   restoreRememberMe();
-  getCode();
+  if (!isLocalMode) {
+  getCode()
+}
 });
 </script>
 
