@@ -1,7 +1,7 @@
 /**
  * RuoYi `/getRouters` 返回结构 → ElegantConstRoute 转换
  *
- * RuoYi 的 RouterVo 结构见 nys_fast_service 的 SysMenuServiceImpl.buildMenus()。
+ * RuoYi 的 RouterVo 结构见 dzxz_fast_service 的 SysMenuServiceImpl.buildMenus()。
  * 后端约定：
  *  - component: 'Layout' | 'ParentView' | 'InnerLink' | 'system/user/index'（视图路径）
  *  - hidden: 是否在菜单隐藏；redirect: 'noRedirect'；meta: {title, icon, noCache, link}

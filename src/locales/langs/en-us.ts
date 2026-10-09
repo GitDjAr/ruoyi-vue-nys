@@ -1,7 +1,7 @@
 const local: App.I18n.Schema = {
   system: {
-    title: 'NYS Admin',
-    copyright: 'Copyright © 2026 NYS',
+    title: 'dzxz Admin',
+    copyright: 'Copyright © 2026 dzxz',
     updateTitle: 'System Version Update Notification',
     updateContent: 'A new version of the system has been detected. Do you want to refresh the page immediately?',
     updateConfirm: 'Refresh immediately',

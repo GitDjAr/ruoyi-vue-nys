@@ -2,6 +2,8 @@ import { computed, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { defineStore } from 'pinia';
 import { useLoading } from '@sa/hooks';
+import { isLocalMode } from '@/config/runtime';
+import { localGetInfo, localLogin, localLogout } from '@/services/local-runtime';
 import { getInfo, login as loginApi } from '@/api/login';
 import { useRouterPush } from '@/hooks/common/router';
 import { localStg } from '@/utils/storage';
@@ -101,13 +103,15 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     startLoading();
 
     try {
-      const res: any = await loginApi(loginForm.username, loginForm.password, loginForm.code, loginForm.uuid);
+      const loginRequest = isLocalMode ? localLogin : loginApi;
+      const res: any = await loginRequest(loginForm.username, loginForm.password, loginForm.code, loginForm.uuid);
 
       // RuoYi 返回 { code, msg, token }
       setToken(res.token);
       token.value = res.token;
 
-      const pass = await getUserInfo();
+      const getInfoRequest = isLocalMode ? localGetInfo : getInfo;
+      const pass = await getInfoRequest();
 
       if (!pass) {
         await resetStore();
@@ -134,7 +138,8 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
   /** 拉取用户信息（RuoYi /getInfo） */
   async function getUserInfo() {
     try {
-      const res: any = await getInfo();
+      const getInfoRequest = isLocalMode ? localGetInfo : getInfo;
+      const res: any = await getInfoRequest();
 
       const user: RuoYiUser = res.user || {};
 

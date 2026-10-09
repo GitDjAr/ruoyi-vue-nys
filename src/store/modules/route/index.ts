@@ -1,10 +1,13 @@
 import { computed, nextTick, ref, shallowRef } from 'vue';
 import type { RouteRecordRaw } from 'vue-router';
 import { defineStore } from 'pinia';
+import type { AxiosResponse } from 'axios';
 import { useBoolean } from '@sa/hooks';
 import type { CustomRoute, ElegantConstRoute, LastLevelRouteKey, RouteKey, RouteMap } from '@elegant-router/types';
 import { ALL_PERMISSION } from '@/constants/app';
+import { isLocalMode } from '@/config/runtime';
 import { router } from '@/router';
+import { getLocalRoutes } from '@/services/local-runtime';
 import { getRouters } from '@/api/menu';
 import { SetupStoreId } from '@/enum';
 import { createStaticRoutes, getAuthVueRoutes } from '@/router/routes';
@@ -169,8 +172,13 @@ export const useRouteStore = defineStore(SetupStoreId.Route, () => {
   /** Init dynamic auth route（RuoYi：/getRouters 下发菜单） */
   async function initDynamicAuthRoute() {
     try {
+      const routeRequest = isLocalMode
+        ? (Promise.resolve({
+            data: getLocalRoutes(authStore.userInfo.roles, authStore.userInfo.permissions)
+          }) as Promise<AxiosResponse<any>>)
+        : (getRouters() as Promise<AxiosResponse<any>>);
       // 用户信息与菜单互不依赖，并行拉取可少等一个 RTT（权限过滤在两者都就绪后执行）
-      const [, res] = await Promise.all([authStore.initUserInfo(), getRouters()]);
+      const [, res] = await Promise.all([authStore.initUserInfo(), routeRequest as Promise<AxiosResponse<any>>]);
 
       // 后端菜单 → ElegantConstRoute（内部会把 name/path 写入运行期注册表）
       const menuRoutes = transformRuoYiRoutes(res.data || []);

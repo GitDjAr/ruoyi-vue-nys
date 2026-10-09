@@ -1,7 +1,7 @@
 /**
  * 控制台彩色日志工具
  *
- * 移植自 nys_lims_admin/src/utils/logger.js，保持 API 一致，
+ * 移植自 dzxz_lims_admin/src/utils/logger.js，保持 API 一致，
  * 便于后续两端代码互通。
  */
 

@@ -4,6 +4,7 @@ allowBuilds:
   '@parcel/watcher': false
   esbuild: false
   simple-git-hooks: false
+  unrs-resolver: set this to true or false
   vue-demi: false
 shamefullyHoist: true
 ignoreWorkspaceRootCheck: true

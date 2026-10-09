@@ -60,7 +60,7 @@ export const themeSettings: App.Theme.ThemeSetting = {
   },
   watermark: {
     visible: true,
-    text: 'nys admin',
+    text: 'dzxz admin',
     enableUserName: false
   },
   tokens: {
@@ -125,5 +125,5 @@ export const overrideThemeSettings = createThemeOverride({
   layout: { mode: 'vertical-mix' },
   header: { breadcrumb: { visible: true, showIcon: false } },
   tab: { height: 38 },
-  watermark: { visible: true, text: 'nys admin', enableUserName: false }
+  watermark: { visible: true, text: 'dzxz admin', enableUserName: false }
 });

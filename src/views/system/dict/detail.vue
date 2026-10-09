@@ -204,7 +204,7 @@ function loadData() {
 <!-- 非 scoped：抽屉 append-to-body 到 body，scoped 命中不到，且暗色变量需挂在 html 上 -->
 <style lang="scss">
 html.dark {
-  /* 字典详情抽屉的暗色变量（迁移自 nys_fast_admin 的 variables.module.scss；
+  /* 字典详情抽屉的暗色变量（迁移自 dzxz_fast_admin 的 variables.module.scss；
      引用点全在本组件内，故随本组件的非 scoped 块一起加载） */
   --dict-drawer-title-color: var(--el-text-color-primary);
   --dict-drawer-subtext-color: var(--el-text-color-secondary);

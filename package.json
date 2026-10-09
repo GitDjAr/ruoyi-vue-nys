@@ -1,8 +1,8 @@
 {
-  "name": "ruoyi-vue-nys",
+  "name": "dzxz-admin-template",
   "type": "module",
   "version": "3.9.2",
-  "description": "适配若依后端的中后台管理系统",
+  "description": "后台管理系统",
   "license": "MIT",
   "engines": {
     "node": ">=20.19.0",

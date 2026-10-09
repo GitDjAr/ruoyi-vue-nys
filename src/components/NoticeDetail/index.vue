@@ -335,7 +335,7 @@ defineExpose({
 
 /* 暗色模式下补上变量定义（亮色走组件内兜底值，视觉不变） */
 html.dark {
-  /* 通知公告详情抽屉的暗色变量（迁移自 nys_fast_admin 的 variables.module.scss；
+  /* 通知公告详情抽屉的暗色变量（迁移自 dzxz_fast_admin 的 variables.module.scss；
      引用点全在本组件内，故随本组件的非 scoped 块一起加载） */
   --notice-title-color: var(--el-text-color-primary);
   --notice-meta-color: var(--el-text-color-secondary);
